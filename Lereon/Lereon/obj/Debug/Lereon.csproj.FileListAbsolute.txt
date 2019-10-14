@@ -1,0 +1,11 @@
+C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\Lereon.exe.config
+C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\Lereon.exe
+C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\Lereon.pdb
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.csprojAssemblyReference.cache
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Form1.resources
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Properties.Resources.resources
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.csproj.GenerateResource.cache
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.csproj.CoreCompileInputs.cache
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.exe
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.pdb
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Form2.resources
