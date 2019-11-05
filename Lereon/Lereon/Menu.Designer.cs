@@ -30,25 +30,34 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.avisos = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.calculadora = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+            this.plato6 = new Lereon.Plato();
+            this.plato5 = new Lereon.Plato();
+            this.plato4 = new Lereon.Plato();
+            this.plato1 = new Lereon.Plato();
+            this.plato3 = new Lereon.Plato();
+            this.plato2 = new Lereon.Plato();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(38, 61);
+            this.button1.Location = new System.Drawing.Point(22, 51);
             this.button1.Name = "button1";
             this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -58,113 +67,45 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(38, 159);
+            this.button2.Location = new System.Drawing.Point(22, 124);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Comandas";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // avisos
             // 
-            this.button3.Location = new System.Drawing.Point(38, 251);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Avisos";
-            this.button3.UseVisualStyleBackColor = true;
+            this.avisos.Location = new System.Drawing.Point(22, 193);
+            this.avisos.Name = "avisos";
+            this.avisos.Size = new System.Drawing.Size(75, 23);
+            this.avisos.TabIndex = 3;
+            this.avisos.Text = "Avisos";
+            this.avisos.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(38, 396);
+            this.button4.Location = new System.Drawing.Point(22, 365);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 4;
             this.button4.Text = "Opciones";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(192, 124);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(251, 224);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Platos";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(137, 191);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Plato 6";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 191);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Plato 5";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(137, 118);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Plato 4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Plato 3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(137, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Plato 2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Plato 1";
-            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(368, 396);
+            this.button5.Location = new System.Drawing.Point(111, 418);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
             this.button5.Text = "Enviar aviso";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox1
             // 
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(219, 61);
+            this.textBox1.Location = new System.Drawing.Point(83, 69);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(166, 20);
             this.textBox1.TabIndex = 7;
@@ -172,7 +113,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(265, 26);
+            this.label7.Location = new System.Drawing.Point(126, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 13);
             this.label7.TabIndex = 8;
@@ -180,36 +121,142 @@
             // 
             // calculadora
             // 
-            this.calculadora.Location = new System.Drawing.Point(38, 325);
+            this.calculadora.Location = new System.Drawing.Point(22, 285);
             this.calculadora.Name = "calculadora";
             this.calculadora.Size = new System.Drawing.Size(75, 23);
             this.calculadora.TabIndex = 9;
             this.calculadora.Text = "Calculadora";
             this.calculadora.UseVisualStyleBackColor = true;
+            this.calculadora.Click += new System.EventHandler(this.calculadora_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.vScrollBar1);
+            this.groupBox1.Controls.Add(this.plato3);
+            this.groupBox1.Controls.Add(this.plato2);
+            this.groupBox1.Location = new System.Drawing.Point(80, 32);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(318, 224);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Platos";
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(0, 16);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 80);
+            this.vScrollBar1.TabIndex = 2;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.calculadora);
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.avisos);
+            this.splitContainer1.Panel1.Controls.Add(this.button4);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.label7);
+            this.splitContainer1.Panel2.Controls.Add(this.button5);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Size = new System.Drawing.Size(486, 468);
+            this.splitContainer1.SplitterDistance = 162;
+            this.splitContainer1.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.vScrollBar2);
+            this.groupBox2.Controls.Add(this.plato6);
+            this.groupBox2.Controls.Add(this.plato5);
+            this.groupBox2.Controls.Add(this.plato4);
+            this.groupBox2.Controls.Add(this.plato1);
+            this.groupBox2.Location = new System.Drawing.Point(14, 105);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(294, 289);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Platos";
+            // 
+            // vScrollBar2
+            // 
+            this.vScrollBar2.Location = new System.Drawing.Point(3, 31);
+            this.vScrollBar2.Name = "vScrollBar2";
+            this.vScrollBar2.Size = new System.Drawing.Size(17, 80);
+            this.vScrollBar2.TabIndex = 13;
+            // 
+            // plato6
+            // 
+            this.plato6.Location = new System.Drawing.Point(156, 157);
+            this.plato6.Name = "plato6";
+            this.plato6.Size = new System.Drawing.Size(132, 126);
+            this.plato6.TabIndex = 12;
+            // 
+            // plato5
+            // 
+            this.plato5.Location = new System.Drawing.Point(23, 157);
+            this.plato5.Name = "plato5";
+            this.plato5.Size = new System.Drawing.Size(127, 126);
+            this.plato5.TabIndex = 11;
+            // 
+            // plato4
+            // 
+            this.plato4.Location = new System.Drawing.Point(156, 20);
+            this.plato4.Name = "plato4";
+            this.plato4.Size = new System.Drawing.Size(132, 125);
+            this.plato4.TabIndex = 10;
+            // 
+            // plato1
+            // 
+            this.plato1.Location = new System.Drawing.Point(23, 19);
+            this.plato1.Name = "plato1";
+            this.plato1.Size = new System.Drawing.Size(127, 126);
+            this.plato1.TabIndex = 9;
+            // 
+            // plato3
+            // 
+            this.plato3.Location = new System.Drawing.Point(180, 19);
+            this.plato3.Name = "plato3";
+            this.plato3.Size = new System.Drawing.Size(132, 133);
+            this.plato3.TabIndex = 1;
+            // 
+            // plato2
+            // 
+            this.plato2.Location = new System.Drawing.Point(20, 17);
+            this.plato2.Name = "plato2";
+            this.plato2.Size = new System.Drawing.Size(132, 133);
+            this.plato2.TabIndex = 0;
+            this.plato2.Load += new System.EventHandler(this.plato2_Load);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 468);
-            this.Controls.Add(this.calculadora);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menú";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -217,19 +264,23 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button avisos;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button calculadora;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private Plato plato3;
+        private Plato plato2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private Plato plato1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.VScrollBar vScrollBar2;
+        private Plato plato6;
+        private Plato plato5;
+        private Plato plato4;
     }
 }
 

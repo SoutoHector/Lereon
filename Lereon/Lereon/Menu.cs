@@ -16,7 +16,11 @@ namespace Lereon
         public Menu()
         {
             InitializeComponent();
+            consulta();
         }
+
+        public List<string> trabajadores = new List<string>();
+        public int cont = 0;
 
         //Prueba base de datos
         public void consulta()
@@ -24,7 +28,7 @@ namespace Lereon
             SQLiteConnection conexion = new SQLiteConnection("Data Source = C:/Users/Lyonx/source/repos/Lereon/Lereon/registro.sqlite");
             conexion.Open();
 
-            string consulta = "select * from registro";
+            string consulta = "select * from trabajadores";
             SQLiteCommand comando = new SQLiteCommand(consulta, conexion);
             SQLiteDataReader datos = comando.ExecuteReader();
 
@@ -34,7 +38,7 @@ namespace Lereon
                 string usuario = datos.GetString(1);
                 string contraseña = datos.GetString(2);
 
-                Console.WriteLine("id: {0}, usuario: {1}, contraseña: {2}");
+                Console.WriteLine("id: {0}, usuario: {1}, contraseña: {2}",id,usuario,contraseña);
             }
 
 
@@ -87,6 +91,34 @@ namespace Lereon
                 catch (ObjectDisposedException) { };
             } while (!intento);
 
+        }
+
+        private void calculadora_Click(object sender, EventArgs e)
+        {
+            calculadora c = new calculadora();
+            c.Show();
+
+        }
+
+        private void plato2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            cont++;
+            avisos.Text = "Aviso("+cont+")";
         }
     }
 }

@@ -12,3 +12,5 @@ C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Autentificacion.resou
 C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Registro.resources
 C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\System.Data.SQLite.dll
 C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.csproj.CopyComplete
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Plato.resources
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.calculadora.resources
