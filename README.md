@@ -25,5 +25,5 @@ desde 18/10/2019 hasta actualmente
   
 8/11/2019
   - Creación de las consultas y lists necesarias para acceder a los datos guardados en la base de datos.
-9/11/2019
+9/11/2019 a 11/11/2019
   - Implementación del código, el cual, permite en la pantalla autentificación poder acceder a la aplicación si el usuario y contraseña se encuentran registrados en la base de datos. Además se ha añadido un bloqueo al botón opciones, permitiendo que solo el jefe o dueño que conozca el usuario y contraseña de administrador, pueda acceder a las funcionalidades de dicho botón que serán implementadas. 
