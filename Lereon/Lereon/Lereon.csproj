@@ -50,17 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AñadirPlato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AñadirPlato.Designer.cs">
+      <DependentUpon>AñadirPlato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComandaInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComandaInfo.Designer.cs">
+      <DependentUpon>ComandaInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Platos.cs" />
+    <Compile Include="Trabajador.cs" />
     <Compile Include="Plato.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Plato.Designer.cs">
       <DependentUpon>Plato.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Calculadora.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Calculadora.Designer.cs">
-      <DependentUpon>Calculadora.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -82,11 +90,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AñadirPlato.resx">
+      <DependentUpon>AñadirPlato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComandaInfo.resx">
+      <DependentUpon>ComandaInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Plato.resx">
       <DependentUpon>Plato.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Calculadora.resx">
-      <DependentUpon>Calculadora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

@@ -15,11 +15,22 @@ namespace Lereon
         public Registro()
         {
             InitializeComponent();
+
         }
+
+        public string rutaIcon = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/letter_l.ico";
+        public string rutaImagen = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/registro.png";
 
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Registro_Load(object sender, EventArgs e)
+        {
+            Icon ico = Icon.ExtractAssociatedIcon(rutaIcon);
+            this.Icon = ico;
+            this.BackgroundImage = new Bitmap(rutaImagen);
         }
     }
 }

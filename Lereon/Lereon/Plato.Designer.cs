@@ -29,58 +29,60 @@
         private void InitializeComponent()
         {
             this.anhadir = new System.Windows.Forms.Button();
-            this.moneda = new System.Windows.Forms.Label();
+            this.coste = new System.Windows.Forms.Label();
             this.nombrePlato = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.imagenPlato = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imagenPlato)).BeginInit();
             this.SuspendLayout();
             // 
             // anhadir
             // 
-            this.anhadir.Location = new System.Drawing.Point(8, 101);
+            this.anhadir.BackColor = System.Drawing.Color.FloralWhite;
+            this.anhadir.Location = new System.Drawing.Point(22, 127);
             this.anhadir.Name = "anhadir";
             this.anhadir.Size = new System.Drawing.Size(75, 23);
             this.anhadir.TabIndex = 2;
             this.anhadir.Text = "+";
-            this.anhadir.UseVisualStyleBackColor = true;
+            this.anhadir.UseVisualStyleBackColor = false;
+            this.anhadir.Click += new System.EventHandler(this.anhadir_Click);
             // 
-            // moneda
+            // coste
             // 
-            this.moneda.AutoSize = true;
-            this.moneda.Location = new System.Drawing.Point(77, 74);
-            this.moneda.Name = "moneda";
-            this.moneda.Size = new System.Drawing.Size(45, 13);
-            this.moneda.TabIndex = 3;
-            this.moneda.Text = "moneda";
+            this.coste.AutoSize = true;
+            this.coste.Location = new System.Drawing.Point(77, 74);
+            this.coste.Name = "coste";
+            this.coste.Size = new System.Drawing.Size(33, 13);
+            this.coste.TabIndex = 3;
+            this.coste.Text = "coste";
             // 
             // nombrePlato
             // 
-            this.nombrePlato.AutoSize = true;
             this.nombrePlato.Location = new System.Drawing.Point(5, 74);
             this.nombrePlato.Name = "nombrePlato";
-            this.nombrePlato.Size = new System.Drawing.Size(66, 13);
+            this.nombrePlato.Size = new System.Drawing.Size(66, 50);
             this.nombrePlato.TabIndex = 4;
             this.nombrePlato.Text = "nombrePlato";
             // 
-            // pictureBox1
+            // imagenPlato
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(8, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.imagenPlato.Location = new System.Drawing.Point(10, 3);
+            this.imagenPlato.Name = "imagenPlato";
+            this.imagenPlato.Size = new System.Drawing.Size(100, 50);
+            this.imagenPlato.TabIndex = 5;
+            this.imagenPlato.TabStop = false;
             // 
             // Plato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox1);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Controls.Add(this.imagenPlato);
             this.Controls.Add(this.nombrePlato);
-            this.Controls.Add(this.moneda);
+            this.Controls.Add(this.coste);
             this.Controls.Add(this.anhadir);
             this.Name = "Plato";
-            this.Size = new System.Drawing.Size(132, 133);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Size = new System.Drawing.Size(131, 185);
+            ((System.ComponentModel.ISupportInitialize)(this.imagenPlato)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,8 +90,8 @@
 
         #endregion
         private System.Windows.Forms.Button anhadir;
-        private System.Windows.Forms.Label moneda;
+        private System.Windows.Forms.Label coste;
         private System.Windows.Forms.Label nombrePlato;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox imagenPlato;
     }
 }

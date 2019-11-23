@@ -16,5 +16,55 @@ namespace Lereon
         {
             InitializeComponent();
         }
+
+        [Category("Appearance")]
+        [Description("Texto asociado a la Label del nombre del plato")]
+        public string TextLbln
+        {
+            set
+            {
+                nombrePlato.Text = value;
+            }
+            get
+            {
+                return nombrePlato.Text;
+            }
+        }
+        [Category("Appearance")]
+        [Description("Texto asociado al la label del coste del producto")]
+        public string TextLblm
+        {
+            set
+            {
+                coste.Text = value;
+            }
+            get
+            {
+                return coste.Text;
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Imagen asociada al plato")]
+        public Bitmap imagenMostra
+        {
+            set
+            {
+                if (imagenMostra != null)
+                {
+                    imagenPlato.Image = value;
+                }
+            }
+            get
+            {
+                return imagenMostra;
+            }
+        }
+
+
+        private void anhadir_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
     }
 }
