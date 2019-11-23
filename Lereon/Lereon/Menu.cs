@@ -13,6 +13,13 @@ using System.Drawing.Imaging;
 
 namespace Lereon
 {
+    /// <summary>
+    /// Clase encargada de gestionar toda la aplicación
+    /// </summary>
+    /// <remarks>
+    /// se encarga de los eventos, de llamar a los formularios necesarios para agregar
+    /// o acceder a determinados elementos de la aplicacion
+    /// </remarks>
     public partial class Menu : Form
     {
         public Menu()
@@ -22,9 +29,11 @@ namespace Lereon
             consultaP();
         }
 
-        private string directory = Environment.GetEnvironmentVariable("homepath");
+        //Clases
         Registro r;
         AñadirPlato pl;
+
+        //Componentes
         List<List<Platos>> multiComandas = new List<List<Platos>>();
         private List<Trabajador> trabajadores = new List<Trabajador>();
         private List<Platos> platos = new List<Platos>();
@@ -42,18 +51,18 @@ namespace Lereon
         Label lbp = new Label();
         Panel panelMenu = new Panel(), panelCalculadora = new Panel(), panelComandas = new Panel(), panelCaja = new Panel(), panelOpciones = new Panel();
         ComandaInfo datosComanda;
-        public int cont = 0;
         private Button boton;
         Button botonEnviarComanda;
         private Plato platoNuevo;
-        public int xb, yb, yz, xp, yp, xt = 83, yt = 69;
-        public int sizetx = 166, sizety = 20, sizelbx = 100, sizelby = 32;
-        public int conta;
-        public bool fmenu = false, fcalculadora = false, fComandas = false, fCaja = false, fOpciones = false;
+
+        //Paths
+        private string directory = Environment.GetEnvironmentVariable("homepath");
         public string rutaImagen = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/imagenes_platos/";
         public string rutaIcon = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/letter_l.ico";
         public string rutaSplit1 = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/wood_split1.png";
         public string rutaSplit2 = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/wood_split2.png";
+
+        //Variables
         public double total = 0;
         public string input = "";
         public char operador = ' ';
@@ -61,11 +70,20 @@ namespace Lereon
         public double totalPagadoComanda = 0;
         public bool flagresultado = false, flagpuntos = true;
         public string filePath;
+        public bool flagap = false;
+        public int xb, yb, yz, xp, yp, xt = 83, yt = 69;
+        public int sizetx = 166, sizety = 20, sizelbx = 100, sizelby = 32;
+        public int conta;
+        public bool fmenu = false, fcalculadora = false, fComandas = false, fCaja = false, fOpciones = false, flagError = false;
+        public int cont = 0;
+        private bool flag = false;
+        private int tries = 3;
+        private bool intento = false;
+        public string result = "";
 
-
-        /**
-         * Realiza una consulta a la base de datos de los trabajadores
-         * */
+        /// <summary>
+        /// Realiza ua consulta a la base de datos de los Trabajadores
+        /// </summary>
         public void consultaT()
         {
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/registro.sqlite");
@@ -89,9 +107,9 @@ namespace Lereon
             conexion.Close();
         }
 
-        /**
-        * Realiza una consulta a la base de datos de los platos
-        * */
+        /// <summary>
+        /// Realiza una consulta a la base de datos de los Platos
+        /// </summary>
         public void consultaP()
         {
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/menu_platos.sqlite");
@@ -110,16 +128,14 @@ namespace Lereon
                 Console.WriteLine("nombre_plato: {0}, precio_plato: {1}, nombre_imagen: {2}", nombre_plato, precio_plato, nombre_imagen);
             }
 
-
             conexion.Close();
         }
 
-
-
-        private bool flag = false;
-        private int tries = 3;
-        private bool intento = false;
-        //Al cargar este formulario se lanza el form de registro  y si es correcto el usuario y la contraseña se accede al menu
+        /// <summary>
+        /// Se encarga de permitir si los datos son correctos tanto del usuario como la contraseña
+        /// </summary>
+        /// <param name="sender">objeto genérico qu puede tomar cualquier tipo de objeto</param>
+        /// <param name="e">Carga el formulario</param>
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -164,7 +180,7 @@ namespace Lereon
                                     this.Icon = ico;
                                     splitContainer1.Panel1.BackgroundImage = new Bitmap(rutaSplit1);
                                     lbp = new Label();
-                                    
+
                                     lbp.Font = new Font("", 16, FontStyle.Bold);
                                     lbp.Text = "Bienvenido, por favor escoja una de las opciones disposibles que se encuentran en el otro panel";
                                     lbp.Location = new Point(37, 114);
@@ -173,15 +189,6 @@ namespace Lereon
                                     lbp.Width = 250;
                                     lbp.Height = 300;
                                     splitContainer1.Panel2.Controls.Add(lbp);
-
-
-                                    //Comentado por el alto gasto de memoria y ralentización de la aplicación
-                                    //splitContainer1.Panel2.BackgroundImage = new Bitmap(rutaSplit2);
-                                    //panelCaja.BackgroundImage = new Bitmap(rutaSplit2);
-                                    //panelCalculadora.BackgroundImage = new Bitmap(rutaSplit2);
-                                    //panelComandas.BackgroundImage = new Bitmap(rutaSplit2);
-                                    //panelMenu.BackgroundImage = new Bitmap(rutaSplit2);
-                                    //panelOpciones.BackgroundImage = new Bitmap(rutaSplit2);
                                     break;
                                 }
                                 else
@@ -191,7 +198,7 @@ namespace Lereon
                                     f.infoError.Text = "Error al introducir el password, \nte quedan: " + tries + " intentos";
                                     if (tries == 0)
                                     {
-                                        MessageBox.Show("El telefono se apagara", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        MessageBox.Show("La aplicación se cerrara", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         Environment.Exit(0); //Cierra bien no usar ni application.exit ni this.close()
                                     }
                                 }
@@ -208,7 +215,14 @@ namespace Lereon
 
         }
 
-
+        /// <summary>
+        /// Funcion encargada de el evento click de el boton calculadora
+        /// <marker>
+        /// Muestra una calculadora para realizar opreaciones sencillas
+        /// </marker>
+        /// </summary>
+        /// <param name="sender"> obeto genérico</param>
+        /// <param name="e">se encarga de crear y mostrar la calculadora</param>
         private void calculadora_Click(object sender, EventArgs e)
         {
             lbp.Visible = false;
@@ -227,7 +241,7 @@ namespace Lereon
                 xb = 65;
                 yb = 150;
                 yz = 150;
-                conta = 0;
+
                 for (int i = 1; i <= 17; i++)
                 {
                     boton = new Button();
@@ -292,22 +306,19 @@ namespace Lereon
             panelOpciones.Visible = false;
             panelCalculadora.Visible = true;
 
-
-
         }
 
-        //Al hacer click en uno de los botones se pasa el valor de los botones 
+        /// <summary>
+        /// Este código se encarga de realizar las operaciones matemáticas de la calculadora
+        /// </summary>
+        /// <param name="sender">objeto usado como referencia para coger los botones y aplicarle segun el texto que tenga una funcion u otra</param>
+        /// <param name="e">se encarga de realizar los cálculos de la calculadora</param>
         private void calcular(Object sender, EventArgs e)
         {
-
-
             try
             {
                 switch (((Button)sender).Text)
                 {
-
-
-
                     case "+":
                         mostrarCalculadora.Text = resultado.ToString();
                         if (flagresultado)
@@ -385,9 +396,9 @@ namespace Lereon
                                 case '/':
                                     if (Convert.ToDouble(input) == 0.00 || Convert.ToDouble(input) == 0)
                                     {
-                                        mostrarCalculadora.Text = "Error";
                                         resultado = 0;
                                         input = " ";
+                                        flagError = true;
                                     }
                                     else
                                     {
@@ -397,7 +408,14 @@ namespace Lereon
                                     break;
                             }
                         }
-                        mostrarCalculadora.Text = resultado.ToString();
+                        if (flagError)
+                        {
+                            mostrarCalculadora.Text = "ERROR, Pulse el boton C";
+                        }
+                        else
+                        {
+                            mostrarCalculadora.Text = resultado.ToString();
+                        }
                         flagresultado = true;
                         flagpuntos = true;
                         break;
@@ -428,6 +446,11 @@ namespace Lereon
             }
         }
 
+        /// <summary>
+        /// Se encarga de devolver a los valores iniciales a las variables usadas em la calculadora
+        /// </summary>
+        /// <param name="sender">boton</param>
+        /// <param name="e">salta un evento al hacer click en el boton reset que devuelve los valores de las variables como estaban en un principio</param>
         public void reset(Object sender, EventArgs e)
         {
             mostrarCalculadora.Clear();
@@ -435,6 +458,7 @@ namespace Lereon
             input = " ";
             resultado = 0;
             operador = ' ';
+            flagError = false;
         }
 
         private void totalCaja_Click(object sender, EventArgs e)
@@ -479,12 +503,24 @@ namespace Lereon
             panelOpciones.Visible = false;
         }
 
+        /// <summary>
+        /// Reinicia el valor de la textbox de la caja que acumula los beneficios de las comandas cobradas
+        /// </summary>
+        /// <param name="sender">boton</param>
+        /// <param name="e">cuando se clicka reinicia el valor a 0</param>
         public void reinicio(Object sender, EventArgs e)
         {
             totalPagadoComanda = 0;
             caja.Text = totalPagadoComanda.ToString();
         }
 
+        /// <summary>
+        /// Funcion encargada de mostrar y gestionar las comandas
+        /// <marker>Por un lado muestra todas las comandas presentes, además permite cobrar las comandas pasándole el valor a la la opción caja y por otra eliminar
+        /// alguna comanda si se tomo erróneamente</marker>
+        /// </summary>
+        /// <param name="sender">boton</param>
+        /// <param name="e">salta un evento al hacer click muestra las comandas enviadas previamente</param>
         private void comandas_Click(object sender, EventArgs e)
         {
             lbp.Visible = false;
@@ -514,7 +550,7 @@ namespace Lereon
                 datosComanda.botonEliminar.Click += new EventHandler(eliminarComanda);
                 datosComanda.TextComanda += "Pedido";
                 datosComanda.TextComanda += "\r\n";
-                datosComanda.TextComanda += "------";
+                datosComanda.TextComanda += "-----------";
                 datosComanda.TextComanda += "\r\n";
                 foreach (Platos p in multiComandas.ElementAt(i))
                 {
@@ -536,6 +572,11 @@ namespace Lereon
 
         }
 
+        /// <summary>
+        /// Pasa el valor del precio total de la comanda a el textbox caja
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">al hacer click paga la comanda y la elimina</param>
         public void pagoComanda(Object sender, EventArgs e)
         {
             foreach (Control c in panelComandas.Controls)
@@ -559,7 +600,11 @@ namespace Lereon
             }
         }
 
-
+        /// <summary>
+        /// Se encarga de eliminar comandas por si se agregaron erróneamente o hubo algún percance
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento al hacer click elimina la comanda seleccionada</param>
         public void eliminarComanda(Object sender, EventArgs e)
         {
             foreach (Control c in panelComandas.Controls)
@@ -581,13 +626,18 @@ namespace Lereon
         }
 
 
-        //Importante añadir primerl el elemento al group box y luego aplicarle el tamaño y la localizacion
+        /// <summary>
+        /// Se encarga de mostrar todos los platos disponibles en el menú y de formar y enviar las comandas
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento al hacer click que muestra genera y muestra la interfaz de menús</param>
         private void menus_Click(object sender, EventArgs e)
         {
             panelMenu.Controls.Clear();
             lbp.Visible = false;
             platos.Clear();
             consultaP();
+
             panelCalculadora.Visible = false;
             panelCaja.Visible = false;
             panelComandas.Visible = false;
@@ -597,19 +647,24 @@ namespace Lereon
             this.splitContainer1.Panel2.Controls.Add(panelMenu);
             panelMenu.Dock = DockStyle.Fill;
             fmenu = true;
+
             Bitmap imagen;
+            conta = 0;
+
             lbMen.Text = "Precio total";
             lbMen.ForeColor = Color.Black;
             lbMen.BackColor = Color.Transparent;
             lbMen.Font = new Font("", 16, FontStyle.Bold);
             lbMen.AutoSize = true;
             panelMenu.Controls.Add(lbMen);
+
             GroupBox muestraMenu = new GroupBox();
             muestraMenu.BackColor = Color.Transparent;
             muestraMenu.Location = new Point(14, 123);
             muestraMenu.Size = new Size(294, 289);
             muestraMenu.Text = "Platos";
             panelMenu.Controls.Add(muestraMenu);
+
             Panel panel_menus = new Panel();
             muestraMenu.Controls.Add(panel_menus);
             panel_menus.Location = new Point(3, 16);
@@ -658,14 +713,13 @@ namespace Lereon
             }
             panelMenu.Controls.Add(botonEnviarComanda);
             panelMenu.Controls.Add(mostrarMenu);
-
-
-
-
-
-
         }
 
+        /// <summary>
+        /// Al hacer click sobre los botones de cada plato se añaden para formar la comanda hasta que se envían
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento al clickar que va sumando los platos a una comanda</param>
         private void sumaComanda(Object sender, EventArgs e)
         {
             botonEnviarComanda.Enabled = true;
@@ -676,10 +730,13 @@ namespace Lereon
             total += Convert.ToDouble(p.Precio);
             mostrarMenu.Text = total.ToString();
             platosComanda.Add(p);
-
-
         }
 
+        /// <summary>
+        /// Se encarga de enviar la comanda al apartado comandas
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento al hacer click que envia la comanda</param>
         public void enviarComanda(Object sender, EventArgs e)
         {
             botonEnviarComanda.Enabled = false;
@@ -690,10 +747,16 @@ namespace Lereon
             total = 0;
             mostrarMenu.Text = "0";
             comandas.Enabled = true;
-
-
         }
 
+        /// <summary>
+        /// Se encarga de gestionar el boton de la cuenta de administrador
+        /// </summary>
+        /// <marker>
+        /// puede agregar o quitar personal y platos del menú
+        /// </marker>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento al hacer click que muestra una nueva interfaz en el panel dos</param>
         private void Opciones_Click(object sender, EventArgs e)
         {
             lbp.Visible = false;
@@ -703,37 +766,45 @@ namespace Lereon
             panelCaja.Visible = false;
             panelCalculadora.Visible = false;
             panelOpciones.Visible = true;
+
             panelOpciones.Controls.Add(lbOpc);
             trabajadores.Clear();
             consultaT();
             platos.Clear();
             consultaP();
+
             lbOpc.Text = "Opciones";
             lbOpc.AutoSize = true;
             lbOpc.Font = new Font("", 16, FontStyle.Bold);
             lbOpc.ForeColor = Color.Black;
             panelOpciones.Dock = DockStyle.Fill;
             splitContainer1.Panel2.Controls.Add(panelOpciones);
+
             Label lb1 = new Label();
             Label lb2 = new Label();
             lb1.AutoSize = true;
+
             lb1.Text = "Lista de trabajadores:";
             lb1.Location = new Point(22, 103);
             lb2.AutoSize = true;
             lb2.Location = new Point(22, 285);
+
             lb2.Text = "Lista de platos:";
             panelOpciones.Controls.Add(lb1);
             panelOpciones.Controls.Add(lb2);
+
             listT = new ListBox();
             listP = new ListBox();
             listT.Size = new Size(261, 97);
             listP.Size = new Size(261, 97);
             listT.Location = new Point(25, 131);
             listP.Location = new Point(25, 323);
+
             panelOpciones.Controls.Add(listT);
             panelOpciones.Controls.Add(listP);
             listT.SelectionMode = SelectionMode.One;
             listP.SelectionMode = SelectionMode.One;
+
             Button btnat = new Button();
             Button btnet = new Button();
             Button btnap = new Button();
@@ -780,18 +851,63 @@ namespace Lereon
 
         }
 
+        /// <summary>
+        /// Función encargada de añadir un trabajador
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">lanza el formulario de registro</param>
         public void añadirTrabajador(Object sender, EventArgs e)
         {
             r = new Registro();
             r.aceptar_r.DialogResult = DialogResult.OK;
-            DialogResult res = r.ShowDialog();
+            r.cancelarRegistro.DialogResult = DialogResult.Cancel;
+            bool flagsalir = true;
+            do
+            {
 
-            if (res == DialogResult.OK)
+
+
+                flag = true;
+                trabajadores.Clear();
+                consultaT();
+                DialogResult res = r.ShowDialog();
+                switch (res)
+                {
+                    case DialogResult.OK:
+                        foreach (Trabajador t in trabajadores)
+                        {
+                            if (t.Nombre.Trim().ToUpper() == r.rusuario.Text.Trim().ToUpper())
+                            {
+                                MessageBox.Show("El usuario ya existe, intente con otro diferente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                flag = false;
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(r.rusuario.Text) || string.IsNullOrEmpty(r.rcontrasenha.Text))
+                        {
+                            MessageBox.Show("Ambos campos no pueden estar vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            flag = false;
+                            break;
+                        }
+
+                        break;
+                    case DialogResult.Cancel:
+                        flag =false;
+                        flagsalir = false;
+                        r.Close();
+                        break;
+                }
+            }
+            while (!flag && flagsalir);
+            if (flag)
             {
                 insertarTrabajador();
             }
         }
 
+        /// <summary>
+        /// Función encargada de introducir los datos en la base de datos de un trabajador
+        /// </summary>
         public void insertarTrabajador()
         {
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/registro.sqlite");
@@ -812,8 +928,11 @@ namespace Lereon
             conexion.Close();
         }
 
-
-
+        /// <summary>
+        /// Función encargada de quitar un trabajador de la base de datos
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">llama a la función eliminarTrabajador y elimina al trabajador del listbox</param>
         public void quitarTrabajador(Object sender, EventArgs e)
         {
             if (listT.Items.Count > 0 && listT.SelectedItem != null)
@@ -823,6 +942,9 @@ namespace Lereon
             }
         }
 
+        /// <summary>
+        /// Se encarga de eliminar al trabajador de la base de datos
+        /// </summary>
         public void eliminarTrabajador()
         {
             string text = listT.GetItemText(listT.SelectedItem);
@@ -850,16 +972,79 @@ namespace Lereon
         }
 
 
+
+        string pathImagen;
+
+        public string Path { get => pathImagen; set => pathImagen = value; }
+
+        /// <summary>
+        /// Se encarga de añadir un plato a la base de datos para poder ser luego mostrado
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">llama al formulario AñadirPlato</param>
         public void añadirPlato(Object sender, EventArgs e)
         {
 
 
-            pl = new AñadirPlato();
+            pl = new AñadirPlato(this);
             pl.btnAceptarPlato.DialogResult = DialogResult.OK;
-            DialogResult res = pl.ShowDialog();
+            pl.btnCancelarPlato.DialogResult = DialogResult.Cancel;
+            bool flagsalir = true;
+            
 
+            do
+            {
+                flagap = true;
+                platos.Clear();
+                consultaP();
+                DialogResult res = pl.ShowDialog();
+                switch (res)
+                {
+                    case DialogResult.OK:
+                        result = "";
+                        if (Path == "")
+                        {
+                            result = "noimagen.png";
 
-            if (res == DialogResult.OK)
+                        }
+                        else
+                        {
+                            filePath = Path;
+                            result = filePath.Substring(filePath.LastIndexOf('\\') + 1);
+                        }
+                        foreach (Platos p in platos)
+                        {
+                            if (pl.nombrePlato.Text.Trim().ToUpper() == p.Nombre_plato.Trim().ToUpper())
+                            {
+                                MessageBox.Show("Ya existe un plato con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                flagap = false;
+                            }
+
+                        }
+
+                        if (string.IsNullOrEmpty(pl.nombrePlato.Text) || string.IsNullOrEmpty(pl.precioPlato.Text))
+                        {
+                            MessageBox.Show("Ambos campos no pueden estar vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            flagap = false;
+
+                        }
+
+                        if (!string.IsNullOrEmpty(pl.precioPlato.Text) && !double.TryParse(pl.precioPlato.Text, out double num))
+                        {
+                            MessageBox.Show("El campo precio debe ser numerico", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            flagap = false;
+                        }
+
+                        break;
+                    case DialogResult.Cancel:
+                        flagsalir = false;
+                        flagap = false;
+                        pl.Close();
+                        break;
+                }
+
+            } while (!flagap && flagsalir);
+            if (flagap)
             {
                 if (pl.precioPlato.Text.Contains(","))
                 {
@@ -867,25 +1052,17 @@ namespace Lereon
                 }
                 insertarPlato();
             }
-
         }
 
+        /// <summary>
+        /// Función encargada de introducir el plato rellenado en la base de datos
+        /// </summary>
         public void insertarPlato()
         {
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/menu_platos.sqlite");
             conexion.Open();
             SQLiteCommand comando = new SQLiteCommand();
-            var result = "";
-            if (pl.pictureBox1.Tag.ToString() == "")
-            {
-                result = "noimagen.png";
-
-            }
-            else
-            {
-                filePath = pl.pictureBox1.Tag.ToString();
-                result = filePath.Substring(filePath.LastIndexOf('\\') + 1);
-            }
+           
 
 
             using (comando = new SQLiteCommand(conexion))
@@ -902,22 +1079,26 @@ namespace Lereon
             }
             conexion.Close();
 
-            if (result != "noimagen.png" && !File.Exists(rutaImagen+result))
+            if (result != "noimagen.png" && !File.Exists(rutaImagen + result))
             {
-            try
-            {
-                
-                File.Copy(filePath, rutaImagen + result);
-            }
-            catch (NullReferenceException e)
-            {
-            }
+                try
+                {
+
+                    File.Copy(filePath, rutaImagen + result);
+                }
+                catch (NullReferenceException e)
+                {
+                }
             }
 
 
         }
 
-
+        /// <summary>
+        /// Quita un plato de la base de datos
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">llama a la función retirarPlato y remueve el plato elegido del listbox</param>
         public void quitarPlato(Object sender, EventArgs e)
         {
             if (listP.Items.Count > 0 && listP.SelectedItem != null)
@@ -927,6 +1108,9 @@ namespace Lereon
             }
         }
 
+        /// <summary>
+        /// Elimina el plato de la base de datos
+        /// </summary>
         public void retirarPlato()
         {
             string text = listP.GetItemText(listP.SelectedItem);

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lereon
 {
+    /// <summary>
+    /// Clase plato
+    /// </summary>
     class Platos
     {
         private string nombre_plato;

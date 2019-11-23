@@ -15,3 +15,7 @@ C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.csprojAssemblyReferen
 C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.ComandaInfo.resources
 C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.Menu.resources
 C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.AñadirPlato.resources
+C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\Lereon.exe.manifest
+C:\Users\Lyonx\source\repos\Lereon\Lereon\bin\Debug\Lereon.application
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.exe.manifest
+C:\Users\Lyonx\source\repos\Lereon\Lereon\obj\Debug\Lereon.application

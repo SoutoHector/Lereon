@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Lereon
 {
+    /// <summary>
+    /// Clase encargada del controlador creado ComandaInfo
+    /// </summary>
     public partial class ComandaInfo : UserControl
     {
         public ComandaInfo()
@@ -49,12 +52,20 @@ namespace Lereon
             }
         }
 
-
+        /// <summary>
+        /// Permite acceder al evento click del botón pagar
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento click</param>
         public void botonPagar_Click(object sender, EventArgs e)
         {
            
         }
-
+        /// <summary>
+        /// Permite acceder al evento click del botón eliminar
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">evento click</param>
         public void botonEliminar_Click(object sender, EventArgs e)
         {
         }

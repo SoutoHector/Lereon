@@ -11,20 +11,35 @@ using System.Windows.Forms;
 
 namespace Lereon
 {
+    /// <summary>
+    /// Clase encarga de permitir el acceso 
+    /// <marker>
+    /// si cumplimenta los datos correctamente , es decir, que existen en la base de datos
+    /// </marker>
+    /// </summary>
     public partial class Autentificacion : Form
     {
         public Autentificacion()
         {
             InitializeComponent();
-
+            consultaT();
         }
 
-        private string directory = Environment.GetEnvironmentVariable("homepath");
-        private List<Trabajador> trabajadores = new List<Trabajador>();
+        //Clases
         Registro r;
+
+        //Path
+        private string directory = Environment.GetEnvironmentVariable("homepath");
         public string rutaIcon = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/letter_l.ico";
         public string rutaImagen = Environment.GetEnvironmentVariable("homepath") + "/source/repos/Lereon/Lereon/Imagenes_interfaz/registro.png";
+
+        //Variables
+        private List<Trabajador> trabajadores = new List<Trabajador>();
         public bool flag = false;
+
+        /// <summary>
+        /// Función encargada de realizar una consulta a la tabla de los trabajadores para añadirla a una list
+        /// </summary>
         public void consultaT()
         {
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/registro.sqlite");
@@ -39,24 +54,14 @@ namespace Lereon
                 string id = Convert.ToString(datos[0]);
                 string usuario = datos.GetString(1);
                 string contraseña = datos.GetString(2);
-
                 trabajadores.Add(new Trabajador() { Nombre = usuario, Password = contraseña });
-
             }
-
-
             conexion.Close();
         }
-
         public void insertarTrabajador()
         {
-
-
-
-
             SQLiteConnection conexion = new SQLiteConnection("Data Source = " + directory + "/source/repos/Lereon/Lereon/registro.sqlite");
             conexion.Open();
-
 
             SQLiteCommand comando = new SQLiteCommand();
             using (comando = new SQLiteCommand(conexion))
@@ -67,59 +72,67 @@ namespace Lereon
                     comando.CommandText = "insert into trabajadores(Usuario,Contrasenha) values ('" + r.rusuario.Text.Trim().ToUpper() + "','" + r.rcontrasenha.Text.Trim().ToUpper() + "')";
                     comando.ExecuteNonQuery();
 
-
                     transaction.Commit();
                 }
             }
-
-
             conexion.Close();
         }
 
-
-
-
-        //Al presionar el boton de registrarse sale una ventana en la cual se introduce los datos de un nuevo usuario de la aplicacion para poder usarla
+        /// <summary>
+        /// Lanza el formulario de registro 
+        /// </summary>
+        /// <param name="sender">botón</param>
+        /// <param name="e">se encarga de lanzar el formulario de registro y de gestionar los datos que se hagan en el formulario </param>
         private void button1_Click(object sender, EventArgs e)
         {
             r = new Registro();
             r.aceptar_r.DialogResult = DialogResult.OK;
-            DialogResult res = r.ShowDialog();
+            r.cancelarRegistro.DialogResult = DialogResult.Cancel;
 
             do
             {
-
-                if (res == DialogResult.OK)
+                flag = true;
+                trabajadores.Clear();
+                consultaT();
+                DialogResult res = r.ShowDialog();
+                switch (res)
                 {
-
-                    foreach (Trabajador t in trabajadores)
-                    {
-                        if (t.Nombre.Trim().ToUpper() == r.rusuario.Text.Trim().ToUpper())
+                    case DialogResult.OK:
+                        foreach (Trabajador t in trabajadores)
                         {
-                            r.infoRegistro.Text = "Ya existe un usuario con ese nombre";
+                            if (t.Nombre.Trim().ToUpper() == r.rusuario.Text.Trim().ToUpper())
+                            {
+                                MessageBox.Show("El usuario ya existe, intente con otro diferente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                flag = false;
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(r.rusuario.Text) || string.IsNullOrEmpty(r.rcontrasenha.Text))
+                        {
+                            MessageBox.Show("Ambos campos no pueden estar vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             flag = false;
+                            break;
                         }
-                        else
-                        {
-                            flag = true;
-                        }
-                    }
 
-                    if(string.IsNullOrEmpty(r.rusuario.Text) || string.IsNullOrEmpty(r.rcontrasenha.Text))
-                    {
-                        r.infoRegistro.Text = "Los campos usuario y contraseña deben ser rellenados";
-                        flag = false;
                         break;
-                    }
-                    
-                    if (flag)
-                    {
-                    insertarTrabajador();
-                    }
+                    case DialogResult.Cancel:
+                        flag = false;
+                        r.Close();
+                        break;
                 }
             } while (!flag);
+            if (flag)
+            {
+                insertarTrabajador();
+            }
+
         }
 
+        /// <summary>
+        /// Carga el formulario
+        /// </summary>
+        /// <param name="sender">formulario</param>
+        /// <param name="e">carga el formulario</param>
         private void Autentificacion_Load(object sender, EventArgs e)
         {
             Icon ico = Icon.ExtractAssociatedIcon(rutaIcon);

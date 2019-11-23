@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lereon
 {
+    /// <summary>
+    /// Clase trabajador
+    /// </summary>
     class Trabajador
     {
         private string nombre;
