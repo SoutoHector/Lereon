@@ -1002,7 +1002,7 @@ namespace Lereon
                 {
                     case DialogResult.OK:
                         result = "";
-                        if (Path == "")
+                        if (Path == "" || Path==null)
                         {
                             result = "noimagen.png";
 
